@@ -1,20 +1,42 @@
 <?php
 
+namespace Bcash\Service;
+
 /**
- * Cliente para serviços de criação de transação.
+ * Implementacao de @{ITransactionService}.
  *
  */
-interface TransactionService{
+class TransactionService extends BaseService implements TransactionService
+{
 
-	/**
-     * Cria uma transação a partir dos dados informados.
-     * 
-     * @param request
-     *            Objeto que contém informações para a criação da transação
-     */
-	public function createTransaction(TransactionRequest $transactionRequest);
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
+	public function __destruct()
+	{
+		parent::__destruct();
+	}
+
+	public function createTransaction(TransactionRequest $transactionRequest)
+	{
+		try {
+			$httpResponse = $this->getHttpHelper()->post(Config::transactionHost, $transactionRequest, $this->getAuthenticationHelper()->generateAuthenticationOAuth());
+
+			if (!$httpResponse->isResponseOK()) {
+				if ($httpResponse->isBadRequest()) {
+					throw new TransactionException("Parametros fornecidos sao invalidos: " . $httpResponse->getResponse());
+				}
+
+				throw new TransactionException("Falha ao criar transacao: " . $httpResponse->getResponse());
+			}
+
+			return $this->parse($httpResponse->getResponse());
+
+		} catch(ServiceHttpException $e) {
+			throw new TransactionException("Falha HTTP ao criar transacao", $e);
+		}
+	}
 
 }
-
-
-?>

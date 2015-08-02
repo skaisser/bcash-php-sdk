@@ -1,7 +1,10 @@
-<?php 
+<?php
 
-class StateEnum{
-	
+namespace Bcash\Domain;
+
+class StateEnum
+{
+
 	const ACRE = "AC";
 
     const ALAGOAS = "AL";
@@ -55,7 +58,5 @@ class StateEnum{
     const SERGIPE = "SE";
 
     const TOCANTINS = "TO";
-	
-}
 
-?>
+}

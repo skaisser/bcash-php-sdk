@@ -1,12 +1,12 @@
 <?php
 
+namespace Bcash\Domain;
+
 /**
  * Objeto de requisição para serviços de transação.
  */
-
-require_once("domain/Model.php");
-
-class TransactionRequest extends Model {
+class TransactionRequest extends Model
+{
 
 	protected $sellerMail;
 
@@ -48,11 +48,11 @@ class TransactionRequest extends Model {
 
 	/**
      * Recupera o e-mail da loja cadastrada no Pagamento Digital.
-     * 
+     *
      * @return sellerMail
      */
-	public function getSellerMail() {
-
+	public function getSellerMail()
+	{
 		return $this->sellerMail;
 	}
 
@@ -65,8 +65,8 @@ class TransactionRequest extends Model {
 	 * @param sellerMail
 	 *            , ex.: empresa@provedor.com
 	 */
-	public function setSellerMail($sellerMail) {
-
+	public function setSellerMail($sellerMail)
+	{
 		$this->sellerMail = $sellerMail;
 	}
 
@@ -78,8 +78,8 @@ class TransactionRequest extends Model {
 	 * @return orderId
 	 *            , ex.: 123
 	 */
-	public function getOrderId() {
-
+	public function getOrderId()
+	{
 		return $this->orderId;
 	}
 
@@ -91,8 +91,8 @@ class TransactionRequest extends Model {
 	 * @param orderId
 	 *            , ex.: 123
 	 */
-	public function setOrderId($orderId) {
-
+	public function setOrderId($orderId)
+	{
 		$this->orderId = $orderId;
 	}
 
@@ -102,8 +102,8 @@ class TransactionRequest extends Model {
 	 *
 	 * @return buyer
 	 */
-	public function getBuyer() {
-
+	public function getBuyer()
+	{
 		return $this->buyer;
 	}
 
@@ -115,7 +115,6 @@ class TransactionRequest extends Model {
 	 * @param buyer
 	 */
 	public function setBuyer(Customer $buyer) {
-
 		$this->buyer = $buyer;
 	}
 
@@ -129,7 +128,6 @@ class TransactionRequest extends Model {
 	 *            , ex.: compra teste
 	 */
 	public function getFree() {
-
 		return $this->free;
 	}
 
@@ -142,8 +140,8 @@ class TransactionRequest extends Model {
 	 * @param free
 	 *            , ex.: compra teste
 	 */
-	public function setFree($free) {
-
+	public function setFree($free)
+	{
 		$this->free = $free;
 	}
 
@@ -154,8 +152,8 @@ class TransactionRequest extends Model {
 	 * @return freight
 	 *            , ex.: 10.95
 	 */
-	public function getFreight() {
-
+	public function getFreight()
+	{
 		return $this->freight;
 	}
 
@@ -166,8 +164,8 @@ class TransactionRequest extends Model {
 	 * @param freight
 	 *            , ex.: 10.95
 	 */
-	public function setFreight($freight) {
-
+	public function setFreight($freight)
+	{
 		$this->freight = $freight;
 	}
 
@@ -180,8 +178,8 @@ class TransactionRequest extends Model {
 	 * @return freightType
 	 *            , ex.: FreightTypeEnum::SEDEX
 	 */
-	public function getFreightType() {
-
+	public function getFreightType()
+	{
 		return $this->freightType;
 	}
 
@@ -194,8 +192,8 @@ class TransactionRequest extends Model {
 	 * @param freightType
 	 *            , ex.: FreightTypeEnum::SEDEX
 	 */
-	public function setFreightType($freightType) {
-
+	public function setFreightType($freightType)
+	{
 		$this->freightType = $freightType;
 	}
 
@@ -207,8 +205,8 @@ class TransactionRequest extends Model {
 	 * @return discount
 	 *            , ex.: 2.25
 	 */
-	public function getDiscount() {
-
+	public function getDiscount()
+	{
 		return $this->discount;
 	}
 
@@ -220,8 +218,8 @@ class TransactionRequest extends Model {
 	 * @param discount
 	 *            , ex.: 2.25
 	 */
-	public function setDiscount($discount) {
-
+	public function setDiscount($discount)
+	{
 		$this->discount = $discount;
 	}
 
@@ -232,8 +230,8 @@ class TransactionRequest extends Model {
 	 * @return addition
 	 *            , ex.: 2.25
 	 */
-	public function getAddition() {
-
+	public function getAddition()
+	{
 		return $this->addition;
 	}
 
@@ -244,8 +242,8 @@ class TransactionRequest extends Model {
 	 * @param addition
 	 *            , ex.: 2.25
 	 */
-	public function setAddition($addition) {
-
+	public function setAddition($addition)
+	{
 		$this->addition = $addition;
 	}
 
@@ -258,8 +256,8 @@ class TransactionRequest extends Model {
 	 * @return paymentMethod
 	 *            , ex.: PaymentMethodEnum::VISA
 	 */
-	public function getPaymentMethod() {
-
+	public function getPaymentMethod()
+	{
 		return $this->paymentMethod;
 	}
 
@@ -272,8 +270,8 @@ class TransactionRequest extends Model {
 	 * @param paymentMethod
 	 *            , ex.: PaymentMethodEnum::VISA
 	 */
-	public function setPaymentMethod(PaymentMethod $paymentMethod) {
-
+	public function setPaymentMethod(PaymentMethod $paymentMethod)
+	{
 		$this->paymentMethod = $paymentMethod;
 	}
 
@@ -285,8 +283,8 @@ class TransactionRequest extends Model {
 	 * @return urlreturn
 	 *            , ex.: https://www.bcash.com.br/loja/retorno.php
 	 */
-	public function getUrlReturn() {
-
+	public function getUrlReturn()
+	{
 		return $this->urlReturn;
 	}
 
@@ -298,8 +296,8 @@ class TransactionRequest extends Model {
 	 * @param urlreturn
 	 *            , ex.: https://www.bcash.com.br/loja/retorno.php
 	 */
-	public function setUrlReturn($urlReturn) {
-
+	public function setUrlReturn($urlReturn)
+	{
 		$this->urlReturn = $urlReturn;
 	}
 
@@ -313,8 +311,8 @@ class TransactionRequest extends Model {
 	 * @return urlNotification
 	 *            , https://www.bcash.com.br/loja/aviso.php
 	 */
-	public function getUrlNotification() {
-
+	public function getUrlNotification()
+	{
 		return $this->urlNotification;
 	}
 
@@ -328,8 +326,8 @@ class TransactionRequest extends Model {
 	 * @param urlNotification
 	 *            , https://www.bcash.com.br/loja/aviso.php
 	 */
-	public function setUrlNotification($urlNotification) {
-
+	public function setUrlNotification($urlNotification)
+	{
 		$this->urlNotification = $urlNotification;
 	}
 
@@ -341,8 +339,8 @@ class TransactionRequest extends Model {
 	 *
 	 * @return products
 	 */
-	public function getProducts() {
-
+	public function getProducts()
+	{
 		return $this->products;
 	}
 
@@ -355,8 +353,8 @@ class TransactionRequest extends Model {
 	 *
 	 * @param products
 	 */
-	public function setProducts(Array $products) {
-
+	public function setProducts(Array $products)
+	{
 		$this->products = $products;
 	}
 
@@ -368,8 +366,8 @@ class TransactionRequest extends Model {
 	 * @return installments
 	 *            , ex.: 5
 	 */
-	public function getInstallments() {
-
+	public function getInstallments()
+	{
 		return $this->installments;
 	}
 
@@ -381,8 +379,8 @@ class TransactionRequest extends Model {
 	 * @param installments
 	 *            , ex.: 5
 	 */
-	public function setInstallments($installments ) {
-
+	public function setInstallments($installments)
+	{
 		$this->installments = $installments;
 	}
 
@@ -392,8 +390,8 @@ class TransactionRequest extends Model {
 	 *
 	 * @return creditCard
 	 */
-	public function getCreditCard() {
-
+	public function getCreditCard()
+	{
 		return $this->creditCard;
 	}
 
@@ -403,8 +401,8 @@ class TransactionRequest extends Model {
 	 *
 	 * @param creditCard
 	 */
-	public function setCreditCard( CreditCard $creditCard ) {
-
+	public function setCreditCard(CreditCard $creditCard)
+	{
 		$this->creditCard = $creditCard;
 	}
 
@@ -419,8 +417,8 @@ class TransactionRequest extends Model {
 	 * @return currency
 	 *            , ex.: CurrencyEnum.REAL
 	 */
-	public function getCurrency() {
-
+	public function getCurrency()
+	{
 		return $this->currency;
 	}
 
@@ -435,8 +433,8 @@ class TransactionRequest extends Model {
 	 * @param currency
 	 *            , ex.: CurrencyEnum.REAL
 	 */
-	public function setCurrency($currency ) {
-
+	public function setCurrency($currency)
+	{
 		$this->currency = $currency;
 	}
 
@@ -447,8 +445,8 @@ class TransactionRequest extends Model {
 	 * @return acceptedContract
 	 *            , ex.: "S"
 	 */
-	public function getAcceptedContract() {
-
+	public function getAcceptedContract()
+	{
 		return $this->acceptedContract;
 	}
 
@@ -459,8 +457,8 @@ class TransactionRequest extends Model {
 	 * @param acceptedContract
 	 *            , ex.: "S"
 	 */
-	public function setAcceptedContract($acceptedContract ) {
-
+	public function setAcceptedContract($acceptedContract)
+	{
 		$this->acceptedContract = $acceptedContract;
 	}
 
@@ -471,8 +469,8 @@ class TransactionRequest extends Model {
 	 * @return viewedContract
 	 *            , ex.: "S"
 	 */
-	public function getViewedContract() {
-
+	public function getViewedContract()
+	{
 		return $this->viewedContract;
 	}
 
@@ -483,8 +481,8 @@ class TransactionRequest extends Model {
 	 * @param viewedContract
 	 *            , ex.: "S"
 	 */
-	public function setViewedContract($viewedContract ) {
-
+	public function setViewedContract($viewedContract)
+	{
 		$this->viewedContract = $viewedContract;
 	}
 
@@ -495,8 +493,8 @@ class TransactionRequest extends Model {
 	 * @return campaignId
 	 *            , ex.: 123
 	 */
-	public function getCampaignId() {
-
+	public function getCampaignId()
+	{
 		return $this->campaignId;
 	}
 
@@ -507,8 +505,8 @@ class TransactionRequest extends Model {
 	 * @param campaignId
 	 *            , ex.: 123
 	 */
-	public function setCampaignId($campaignId ) {
-
+	public function setCampaignId($campaignId)
+	{
 		$this->campaignId = $campaignId;
 	}
 
@@ -520,8 +518,8 @@ class TransactionRequest extends Model {
 	 * @return ipSeller
 	 *            , ex.: 169.254.57.175
 	 */
-	public function getIpSeller() {
-
+	public function getIpSeller()
+	{
 		return $this->ipSeller;
 	}
 
@@ -534,11 +532,9 @@ class TransactionRequest extends Model {
 	 * @param ipSeller
 	 *            , ex.: 169.254.57.175
 	 */
-	public function setIpSeller($ipSeller ) {
-
+	public function setIpSeller($ipSeller)
+	{
 		$this->ipSeller = $ipSeller;
 	}
+
 }
-
-
-?>

@@ -1,12 +1,13 @@
 <?php
 
-require_once("exception/BaseException.php");
+namespace Bcash\Exception;
 
-class ExtendedWarrantyException extends BaseException {
-	
-	public function __construct($message, Exception $previous = null) {
-		 
+class ExtendedWarrantyException extends BaseException
+{
+
+	public function __construct($message, Exception $previous = null)
+  {
 		parent::__construct($message, $previous);
 	}
+
 }
-?>

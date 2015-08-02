@@ -1,13 +1,17 @@
 <?php
-abstract class Model {
 
-	public function toArray() {
-		
+namespace Bcash\Domain;
+
+abstract class Model
+{
+
+	public function toArray()
+	{
 		return $this->processArray(get_object_vars($this));
 	}
 
-	private function processArray($array) {
-		
+	private function processArray($array)
+	{
 		foreach ($array as $key => $value) {
 			if (is_object($value)) {
 				$array[$key] = $value->toArray();
@@ -16,9 +20,9 @@ abstract class Model {
 				$array[$key] = $this->processArray($value);
 			}
 		}
-		
+
 		// If the property isn't an object or array, leave it untouched
 		return $array;
 	}
+
 }
-?>

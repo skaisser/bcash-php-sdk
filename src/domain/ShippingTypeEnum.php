@@ -1,6 +1,9 @@
 <?php
 
-class FreightTypeEnum {
+namespace Bcash\Domain;
+
+class ShippingTypeEnum
+{
 
 	const E_SEDEX = "E_SEDEX";
 
@@ -11,10 +14,7 @@ class FreightTypeEnum {
 	const ENCOMENDA = "ENCOMENDA";
 
 	const CARTA_REGISTRADA = "CARTA_REGISTRADA";
-	
+
 	const TRANSPORTADORA = "TRANSPORTADORA";
 
 }
-
-
-?>

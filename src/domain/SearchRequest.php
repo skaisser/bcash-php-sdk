@@ -1,12 +1,11 @@
 <?php
 
-require_once("domain/Model.php");
+namespace Bcash\Domain;
 
-class SearchRequest extends Model {
-
+class SearchRequest extends Model
+{
 
 	protected $cpf;
-
 
 	/**
 	 * CPF do comprador<br>
@@ -16,8 +15,8 @@ class SearchRequest extends Model {
 	 * @param cpf
 	 *            , ex.: 99999999999
 	 */
-	public function setCpf($cpf) {
-
+	public function setCpf($cpf)
+	{
 		$this->cpf = $cpf;
 	}
 
@@ -29,9 +28,9 @@ class SearchRequest extends Model {
 	 * @return cpf
 	 *            , ex.: 99999999999
 	 */
-    public function getCpf() {
-
+    public function getCpf()
+    {
         return $this->cpf;
     }
+
 }
-?>

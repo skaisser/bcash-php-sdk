@@ -1,6 +1,9 @@
 <?php
 
-class PaymentMethodEnum {
+namespace Bcash\Domain;
+
+class PaymentMethodEnum
+{
 
 	const VISA = "1";
 
@@ -23,6 +26,3 @@ class PaymentMethodEnum {
 	const ITAU_ONLINE_TRANSFER = "60";
 
 }
-
-
-?>

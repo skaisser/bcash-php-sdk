@@ -1,8 +1,9 @@
 <?php
 
-require_once("domain/Model.php");
+namespace Bcash\Domain;
 
-class CreditCard extends Model {
+class CreditCard extends Model
+{
 
 	protected $holder;
 
@@ -21,8 +22,8 @@ class CreditCard extends Model {
 	 * @return holder
 	 *            , ex.: João D. F. Silva
 	 */
-	public function getHolder() {
-
+	public function getHolder()
+	{
 		return $this->holder;
 	}
 
@@ -35,8 +36,8 @@ class CreditCard extends Model {
 	 * @param holder
 	 *            , ex.: João D. F. Silva
 	 */
-	public function setHolder($holder) {
-
+	public function setHolder($holder)
+	{
 		$this->holder = $holder;
 	}
 
@@ -48,8 +49,8 @@ class CreditCard extends Model {
 	 * @return number
 	 *            , ex.: 4111111111111110
 	 */
-	public function getNumber() {
-
+	public function getNumber()
+	{
 		return $this->number;
 	}
 
@@ -62,8 +63,8 @@ class CreditCard extends Model {
 	 * @param number
 	 *            , ex.: 4111111111111110
 	 */
-	public function setNumber($number) {
-
+	public function setNumber($number)
+	{
 		$this->number = $number;
 	}
 
@@ -74,8 +75,8 @@ class CreditCard extends Model {
 	 *
 	 * @return securityCode
 	 */
-	public function getSecurityCode() {
-
+	public function getSecurityCode()
+	{
 		return $this->securityCode;
 	}
 
@@ -87,8 +88,8 @@ class CreditCard extends Model {
 	 *
 	 * @param securityCode
 	 */
-	public function setSecurityCode($securityCode) {
-
+	public function setSecurityCode($securityCode)
+	{
 		$this->securityCode = $securityCode;
 	}
 
@@ -98,8 +99,8 @@ class CreditCard extends Model {
 	 *
 	 * @return maturityMonth
 	 */
-	public function getMaturityMonth() {
-
+	public function getMaturityMonth()
+	{
 		return $this->maturityMonth;
 	}
 
@@ -110,8 +111,8 @@ class CreditCard extends Model {
 	 *
 	 * @param maturityMonth
 	 */
-	public function setMaturityMonth($maturityMonth) {
-
+	public function setMaturityMonth($maturityMonth)
+	{
 		$this->maturityMonth = $maturityMonth;
 	}
 
@@ -121,8 +122,8 @@ class CreditCard extends Model {
 	 *
 	 * @return maturityYear
 	 */
-	public function getMaturityYear() {
-
+	public function getMaturityYear()
+	{
 		return $this->maturityYear;
 	}
 
@@ -132,12 +133,9 @@ class CreditCard extends Model {
 	 *
 	 * @param maturityYear
 	 */
-	public function setMaturityYear($maturityYear) {
-
+	public function setMaturityYear($maturityYear)
+	{
 		$this->maturityYear = $maturityYear;
 	}
 
 }
-
-
-?>

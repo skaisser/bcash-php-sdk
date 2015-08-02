@@ -1,8 +1,9 @@
 <?php
 
-require_once("domain/Model.php");
+namespace Bcash\Domain;
 
-class Customer extends Model {
+class Customer extends Model
+{
 
 	protected $mail;
 
@@ -43,8 +44,8 @@ class Customer extends Model {
 	 * @return mail
 	 *            , ex.: cliente@provedor.com
 	 */
-	public function getMail() {
-
+	public function getMail()
+	{
 		return $this->mail;
 	}
 
@@ -57,8 +58,8 @@ class Customer extends Model {
 	 * @param mail
 	 *            , ex.: cliente@provedor.com
 	 */
-	public function setMail($mail) {
-
+	public function setMail($mail)
+	{
 		$this->mail = $mail;
 	}
 
@@ -70,8 +71,8 @@ class Customer extends Model {
 	 * @return name
 	 *            , ex.: Antonio Junior
 	 */
-	public function getName() {
-
+	public function getName()
+	{
 		return $this->name;
 	}
 
@@ -84,8 +85,8 @@ class Customer extends Model {
 	 * @param name
 	 *            , ex.: Antonio Junior
 	 */
-	public function setName($name) {
-
+	public function setName($name)
+	{
 		$this->name = $name;
 	}
 
@@ -97,8 +98,8 @@ class Customer extends Model {
 	 * @return cpf
 	 *            , ex.: 99999999999
 	 */
-	public function getCpf() {
-
+	public function getCpf()
+	{
 		return $this->cpf;
 	}
 
@@ -111,8 +112,8 @@ class Customer extends Model {
 	 * @param cpf
 	 *            , ex.: 99999999999
 	 */
-	public function setCpf($cpf) {
-
+	public function setCpf($cpf)
+	{
 		$this->cpf = $cpf;
 	}
 
@@ -124,8 +125,8 @@ class Customer extends Model {
 	 * @return phone
 	 *            , ex.: 1126267469
 	 */
-	public function getPhone() {
-
+	public function getPhone()
+	{
 		return $this->phone;
 	}
 
@@ -138,8 +139,8 @@ class Customer extends Model {
 	 * @param phone
 	 *            , ex.: 1126267469
 	 */
-	public function setPhone($phone) {
-
+	public function setPhone($phone)
+	{
 		$this->phone = $phone;
 	}
 
@@ -151,8 +152,8 @@ class Customer extends Model {
 	 * @return cellPhone
 	 *            , ex.: 1199990000
 	 */
-	public function getCellPhone() {
-
+	public function getCellPhone()
+	{
 		return $this->cellPhone;
 	}
 
@@ -165,8 +166,8 @@ class Customer extends Model {
 	 * @param cellPhone
 	 *            , ex.: 1199990000
 	 */
-	public function setCellPhone($cellPhone) {
-
+	public function setCellPhone($cellPhone)
+	{
 		$this->cellPhone = $cellPhone;
 	}
 
@@ -180,8 +181,8 @@ class Customer extends Model {
 	 * @return gender
 	 *            , ex.: GenderEnum::MALE
 	 */
-	public function getGender() {
-
+	public function getGender()
+	{
 		return $this->gender;
 	}
 
@@ -196,8 +197,8 @@ class Customer extends Model {
 	 * @param gender
 	 *            , ex.: GenderEnum::MALE
 	 */
-	public function setGender($gender) {
-
+	public function setGender($gender)
+	{
 		$this->gender = $gender;
 	}
 
@@ -209,8 +210,8 @@ class Customer extends Model {
 	 * @return birthDate
 	 *            , ex.: date("d/m/Y");
 	 */
-	public function getBirthDate() {
-
+	public function getBirthDate()
+	{
 		return $this->birthDate;
 	}
 
@@ -222,8 +223,8 @@ class Customer extends Model {
 	 * @param birthDate
 	 *            , ex.: date("d/m/Y");
 	 */
-	public function setBirthDate($birthDate) {
-
+	public function setBirthDate($birthDate)
+	{
 		$this->birthDate = $birthDate;
 	}
 
@@ -235,8 +236,8 @@ class Customer extends Model {
 	 * @return rg
 	 *            , ex.: 999999999
 	 */
-	public function getRg() {
-
+	public function getRg()
+	{
 		return $this->rg;
 	}
 
@@ -248,8 +249,8 @@ class Customer extends Model {
 	 * @param rg
 	 *            , ex.: 999999999
 	 */
-	public function setRg($rg) {
-
+	public function setRg($rg)
+	{
 		$this->rg = $rg;
 	}
 
@@ -260,8 +261,8 @@ class Customer extends Model {
 	 * @return issueRgDate
 	 *            , ex.: date("d/m/Y");
 	 */
-	public function getIssueRgDate() {
-
+	public function getIssueRgDate()
+	{
 		return $this->issueRgDate;
 	}
 
@@ -272,8 +273,8 @@ class Customer extends Model {
 	 * @param issueRgDate
 	 *            , ex.: date("d/m/Y");
 	 */
-	public function setIssueRgDate($issueRgDate) {
-
+	public function setIssueRgDate($issueRgDate)
+	{
 		$this->issueRgDate = $issueRgDate;
 	}
 
@@ -285,8 +286,8 @@ class Customer extends Model {
 	 * @return organConsignorRg
 	 *            , ex.: SSP
 	 */
-	public function getOrganConsignorRg() {
-
+	public function getOrganConsignorRg()
+	{
 		return $this->organConsignorRg;
 	}
 
@@ -298,8 +299,8 @@ class Customer extends Model {
 	 * @param organConsignorRg
 	 *            , ex.: SSP
 	 */
-	public function setOrganConsignorRg($organConsignorRg) {
-
+	public function setOrganConsignorRg($organConsignorRg)
+	{
 		$this->organConsignorRg = $organConsignorRg;
 	}
 
@@ -313,8 +314,8 @@ class Customer extends Model {
 	 * @return stateConsignorRg
 	 *            , ex.: StateEnum::MINAS_GERAIS
 	 */
-	public function getStateConsignorRg() {
-
+	public function getStateConsignorRg()
+	{
 		return $this->stateConsignorRg;
 	}
 
@@ -328,8 +329,8 @@ class Customer extends Model {
 	 * @param stateConsignorRg
 	 *            , ex.: StateEnum::MINAS_GERAIS
 	 */
-	public function setStateConsignorRg($stateConsignorRg) {
-
+	public function setStateConsignorRg($stateConsignorRg)
+	{
 		$this->stateConsignorRg = $stateConsignorRg;
 	}
 
@@ -342,8 +343,8 @@ class Customer extends Model {
 	 * @return companyName
 	 *            , ex.: Razão Social da minha empresa
 	 */
-	public function getCompanyName() {
-
+	public function getCompanyName()
+	{
 		return $this->companyName;
 	}
 
@@ -356,8 +357,8 @@ class Customer extends Model {
 	 * @param companyName
 	 *            , ex.: Razão Social da minha empresa
 	 */
-	public function setCompanyName($companyName) {
-
+	public function setCompanyName($companyName)
+	{
 		$this->companyName = $companyName;
 	}
 
@@ -370,8 +371,8 @@ class Customer extends Model {
 	 * @return cnpj
 	 *            , ex.: 99999999999999
 	 */
-	public function getCnpj() {
-
+	public function getCnpj()
+	{
 		return $this->cnpj;
 	}
 
@@ -384,8 +385,8 @@ class Customer extends Model {
 	 * @param cnpj
 	 *            , ex.: 99999999999999
 	 */
-	public function setCnpj($cnpj) {
-
+	public function setCnpj($cnpj)
+	{
 		$this->cnpj = $cnpj;
 	}
 
@@ -396,8 +397,8 @@ class Customer extends Model {
 	 *
 	 * @return address
 	 */
-	public function getAddress() {
-
+	public function getAddress()
+	{
 		return $this->address;
 	}
 
@@ -408,8 +409,8 @@ class Customer extends Model {
 	 *
 	 * @param address
 	 */
-	public function setAddress(Address $address) {
-
+	public function setAddress(Address $address)
+	{
 		$this->address = $address;
 	}
 
@@ -421,8 +422,8 @@ class Customer extends Model {
 	 *
 	 * @return searchToken
 	 */
-	public function getSearchToken() {
-
+	public function getSearchToken()
+	{
 		return $this->searchToken;
 	}
 
@@ -434,11 +435,9 @@ class Customer extends Model {
 	 *
 	 * @param searchToken
 	 */
-	public function setSearchToken($searchToken) {
-
+	public function setSearchToken($searchToken)
+	{
 		$this->searchToken = $searchToken;
 	}
+
 }
-
-
-?>

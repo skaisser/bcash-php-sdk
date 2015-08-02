@@ -1,8 +1,9 @@
 <?php
 
-require_once("domain/Model.php");
+namespace Bcash\Domain;
 
-class Product extends Model {
+class Product extends Model
+{
 
 	protected $code;
 
@@ -13,8 +14,6 @@ class Product extends Model {
 	protected $value;
 
 	protected $extraDescription;
-	
-	protected $extendedWarranty;
 
 	/**
 	 * Código que identifica o produto em sua loja<br>
@@ -23,8 +22,8 @@ class Product extends Model {
 	 * @return code
 	 *            , ex.: 446
 	 */
-	public function getCode() {
-
+	public function getCode()
+	{
 		return $this->code;
 	}
 
@@ -37,8 +36,8 @@ class Product extends Model {
 	 * @param code
 	 *            , ex.: 446
 	 */
-	public function setCode($code) {
-
+	public function setCode($code)
+	{
 		$this->code = $code;
 	}
 
@@ -50,8 +49,8 @@ class Product extends Model {
 	 * @return description
 	 *            , ex.: Camiseta da seleção brasileira
 	 */
-	public function getDescription() {
-
+	public function getDescription()
+	{
 		return $this->description;
 	}
 
@@ -64,8 +63,8 @@ class Product extends Model {
 	 * @param description
 	 *            , ex.: Camiseta da seleção brasileira
 	 */
-	public function setDescription($description) {
-
+	public function setDescription($description)
+	{
 		$this->description = $description;
 	}
 
@@ -76,8 +75,8 @@ class Product extends Model {
 	 * @return amount
 	 *            , ex.: 2
 	 */
-	public function getAmount() {
-
+	public function getAmount()
+	{
 		return $this->amount;
 	}
 
@@ -89,8 +88,8 @@ class Product extends Model {
 	 * @param amount
 	 *            , ex.: 2
 	 */
-	public function setAmount($amount) {
-
+	public function setAmount($amount)
+	{
 		$this->amount = $amount;
 	}
 
@@ -101,8 +100,8 @@ class Product extends Model {
 	 * @return value
 	 *            , ex.: 10.95
 	 */
-	public function getValue() {
-
+	public function getValue()
+	{
 		return $this->value;
 	}
 
@@ -114,8 +113,8 @@ class Product extends Model {
 	 * @param value
 	 *            , ex.: 10.95
 	 */
-	public function setValue($value) {
-
+	public function setValue($value)
+	{
 		$this->value = $value;
 	}
 
@@ -126,8 +125,8 @@ class Product extends Model {
 	 *
 	 * @return extraDescription
 	 */
-	public function getExtraDescription() {
-
+	public function getExtraDescription()
+	{
 		return $this->extraDescription;
 	}
 
@@ -138,11 +137,9 @@ class Product extends Model {
 	 *
 	 * @param extraDescription
 	 */
-	public function setExtraDescription($extraDescription) {
-
+	public function setExtraDescription($extraDescription)
+	{
 		$this->extraDescription = $extraDescription;
 	}
 
-	
-	
 }

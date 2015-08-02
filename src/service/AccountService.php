@@ -1,23 +1,48 @@
 <?php
 
+namespace Bcash\Service;
+
 /**
- * Cliente para busca de contas
+ * Implementação da interface @{IAccountService}
  *
  */
-interface AccountService{
+require_once("serviceImpl/BaseService.php");
 
- 	/**
-     * Busca todas a contas vinculadas com o CPF informado.
-     * 
-     * @param cpf
-     *           CPF utilizado para a busca.
-     * @return Objeto que contém informações da busca e uma lista de contas
-     * @throws AccountException
-     *             exceção em caso de de erro na busca da conta.
-     */
-	public function searchAccounts($cpf);
+class AccountService extends BaseService implements AccountService
+{
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
+	public function __destruct()
+	{
+		parent::__destruct();
+	}
+
+	public function searchAccounts($cpf)
+	{
+		try {
+
+			$searchRequest = new SearchRequest();
+			$searchRequest->setCpf($cpf);
+
+			$httpResponse = $this->getHttpHelper()->post(Config::accountHost, $searchRequest, $this->getAuthenticationHelper()->generateAuthenticationBasic());
+
+			if(!$httpResponse->isResponseOK()){
+				if($httpResponse->isBadRequest()) {
+					throw new AccountException("Parametros fornecidos sao invalidos: " . $httpResponse->getResponse());
+				}
+
+				throw new AccountException("Falha ao criar conta: " . $httpResponse->getResponse());
+			}
+
+			return $this->parse($httpResponse->getResponse());
+		} catch (ServiceHttpException $e) {
+			throw new AccountException("Falha HTTP ao criar conta", $e);
+		}
+
+	}
 
 }
-
-
-?>

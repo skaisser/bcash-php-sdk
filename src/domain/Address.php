@@ -1,8 +1,9 @@
 <?php
 
-require_once("domain/Model.php");
+namespace Bcash\Domain;
 
-class Address extends Model {
+class Address extends Model
+{
 
 	protected $address;
 
@@ -18,8 +19,8 @@ class Address extends Model {
 
 	protected $zipCode;
 
-	
-	
+
+
 	/**
 	 * Endereço do comprador<br>
 	 * <i>Tamanho máximo: 100 caracteres</i><br>
@@ -27,11 +28,11 @@ class Address extends Model {
 	 * @return address
 	 *            , ex.: Av. Tiradentes
 	 */
-	public function getAddress() {
-
+	public function getAddress()
+	{
 		return $this->address;
 	}
-	
+
 	/**
 	 * Endereço do comprador<br>
 	 * <i>Tamanho máximo: 100 caracteres</i><br>
@@ -40,8 +41,8 @@ class Address extends Model {
 	 * @param address
 	 *            , ex.: Av. Tiradentes
 	 */
-	public function setAddress($address) {
-
+	public function setAddress($address)
+	{
 		$this->address = $address;
 	}
 
@@ -53,8 +54,8 @@ class Address extends Model {
 	 * @return number
 	 *            , ex.: 1254
 	 */
-	public function getNumber() {
-
+	public function getNumber()
+	{
 		return $this->number;
 	}
 
@@ -67,8 +68,8 @@ class Address extends Model {
 	 * @param number
 	 *            , ex.: 1254
 	 */
-	public function setNumber($number) {
-
+	public function setNumber($number)
+	{
 		$this->number = $number;
 	}
 
@@ -80,8 +81,8 @@ class Address extends Model {
 	 * @return complement
 	 *            , ex.: Apartamento 10
 	 */
-	public function getComplement() {
-
+	public function getComplement()
+	{
 		return $this->complement;
 	}
 
@@ -93,8 +94,8 @@ class Address extends Model {
 	 * @param complement
 	 *            , ex.: Apartamento 10
 	 */
-	public function setComplement($complement) {
-
+	public function setComplement($complement)
+	{
 		$this->complement = $complement;
 	}
 
@@ -106,8 +107,8 @@ class Address extends Model {
 	 * @return neighborhood
 	 *            , ex.: Centro
 	 */
-	public function getNeighborhood() {
-
+	public function getNeighborhood()
+	{
 		return $this->neighborhood;
 	}
 
@@ -120,8 +121,8 @@ class Address extends Model {
 	 * @param neighborhood
 	 *            , ex.: Centro
 	 */
-	public function setNeighborhood($neighborhood) {
-
+	public function setNeighborhood($neighborhood)
+	{
 		$this->neighborhood = $neighborhood;
 	}
 
@@ -133,8 +134,8 @@ class Address extends Model {
 	 * @return city
 	 *            , ex.: São Paulo
 	 */
-	public function getCity() {
-
+	public function getCity()
+	{
 		return $this->city;
 	}
 
@@ -147,8 +148,8 @@ class Address extends Model {
 	 * @param city
 	 *            , ex.: São Paulo
 	 */
-	public function setCity($city) {
-
+	public function setCity($city)
+	{
 		$this->city = $city;
 	}
 
@@ -161,8 +162,8 @@ class Address extends Model {
 	 *
 	 * @return state
 	 */
-	public function getState() {
-
+	public function getState()
+	{
 		return $this->state;
 	}
 
@@ -176,12 +177,12 @@ class Address extends Model {
 	 *
 	 * @param state
 	 */
-	public function setState($state ) {
-
+	public function setState($state)
+	{
 		$this->state = $state;
 	}
 
-	
+
 	/**
 	 * CEP do comprador<br>
 	 * <i>Tamanho máximo: 9 caracteres</i><br>
@@ -189,8 +190,8 @@ class Address extends Model {
 	 * @return zipCode
 	 *            , ex.: 17500000
 	 */
-	public function getZipCode() {
-
+	public function getZipCode()
+	{
 		return $this->zipCode;
 	}
 
@@ -203,9 +204,9 @@ class Address extends Model {
 	 * @param zipCode
 	 *            , ex.: 17500000
 	 */
-	public function setZipCode($zipCode) {
-
+	public function setZipCode($zipCode)
+	{
 		$this->zipCode = $zipCode;
 	}
+
 }
-?>

@@ -1,16 +1,17 @@
 <?php
 
-require_once("domain/Model.php");
+namespace Bcash\Domain;
 
-class PaymentMethod extends Model {
+class PaymentMethod extends Model
+{
 
 	protected $code;
-	
-	public static function createPaymentMethod($code) {
-		
+
+	public static function createPaymentMethod($code)
+	{
 		$method = new PaymentMethod();
 		$method->setCode($code);
-		
+
 		return $method;
 	}
 
@@ -21,8 +22,8 @@ class PaymentMethod extends Model {
 	 * @return code
 	 *            , ex.: PaymentMethodEnum::VISA
 	 */
-	public function getCode() {
-
+	public function getCode()
+	{
 		return $this->code;
 	}
 
@@ -35,10 +36,9 @@ class PaymentMethod extends Model {
 	 * @param code
 	 *            , ex.: PaymentMethodEnum::VISA
 	 */
-	public function setCode($code) {
-
+	public function setCode($code)
+	{
 		$this->code = $code;
 	}
-}
 
-?>
+}
