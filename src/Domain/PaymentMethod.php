@@ -6,13 +6,10 @@ class PaymentMethod extends Model
 {
 
 	protected $code;
-
-	public static function createPaymentMethod($code)
+	
+	public function __construct($code)
 	{
-		$method = new PaymentMethod();
-		$method->setCode($code);
-
-		return $method;
+		$this->code = $code;
 	}
 
 	/**
@@ -25,20 +22,6 @@ class PaymentMethod extends Model
 	public function getCode()
 	{
 		return $this->code;
-	}
-
-
-	/**
-	 * Meio de Pagamento utilizado para processar a transação<br>
-	 * <b>Campo obrigatório</b> <br>
-	 * *Vide enum: {@link PaymentMethodEnum}
-	 *
-	 * @param code
-	 *            , ex.: PaymentMethodEnum::VISA
-	 */
-	public function setCode($code)
-	{
-		$this->code = $code;
 	}
 
 }

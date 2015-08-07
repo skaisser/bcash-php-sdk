@@ -2,6 +2,8 @@
 
 namespace Bcash\Domain;
 
+use Bcash\Domain\PaymentMethod;
+
 /**
  * Objeto de requisição para serviços de transação.
  */
@@ -33,6 +35,8 @@ class TransactionRequest extends Model
 	protected $urlNotification;
 
 	protected $products;
+	
+	protected $dependentTransactions;
 
 	protected $installments;
 
@@ -149,10 +153,10 @@ class TransactionRequest extends Model
 	/**
 	 * Valor do frete<br>
 	 *
-	 * @return freight
+	 * @return shipping
 	 *            , ex.: 10.95
 	 */
-	public function getFreight()
+	public function getShipping()
 	{
 		return $this->freight;
 	}
@@ -161,24 +165,24 @@ class TransactionRequest extends Model
 	/**
 	 * Valor do frete<br>
 	 *
-	 * @param freight
+	 * @param shipping
 	 *            , ex.: 10.95
 	 */
-	public function setFreight($freight)
+	public function setShipping($value)
 	{
-		$this->freight = $freight;
+		$this->freight = $value;
 	}
 
 
 	/**
 	 * Tipo do frete<br>
 	 * <br>
-	 * *Vide enum: {@link FreightTypeEnum}
+	 * *Vide enum: {@link ShippingTypeEnum}
 	 *
-	 * @return freightType
-	 *            , ex.: FreightTypeEnum::SEDEX
+	 * @return shippingType
+	 *            , ex.: ShippingTypeEnum::SEDEX
 	 */
-	public function getFreightType()
+	public function getShippingType()
 	{
 		return $this->freightType;
 	}
@@ -187,14 +191,14 @@ class TransactionRequest extends Model
 	/**
 	 * Tipo do frete<br>
 	 * <br>
-	 * *Vide enum: {@link FreightTypeEnum}
+	 * *Vide enum: {@link ShippingTypeEnum}
 	 *
-	 * @param freightType
-	 *            , ex.: FreightTypeEnum::SEDEX
+	 * @param shippingType
+	 *            , ex.: ShippingTypeEnum::SEDEX
 	 */
-	public function setFreightType($freightType)
+	public function setShippingType($type)
 	{
-		$this->freightType = $freightType;
+		$this->freightType = $type;
 	}
 
 
@@ -270,9 +274,9 @@ class TransactionRequest extends Model
 	 * @param paymentMethod
 	 *            , ex.: PaymentMethodEnum::VISA
 	 */
-	public function setPaymentMethod(PaymentMethod $paymentMethod)
+	public function setPaymentMethod($paymentMethod)
 	{
-		$this->paymentMethod = $paymentMethod;
+		$this->paymentMethod = new PaymentMethod($paymentMethod);
 	}
 
 
@@ -358,7 +362,30 @@ class TransactionRequest extends Model
 		$this->products = $products;
 	}
 
-
+	/**
+	 * Lista de transacoes dependentes.<br>
+	 *
+	 * *Obs.: Preencher a lista com o objeto {@link DependentTransaction}
+	 *
+	 * @return dependentTransactions
+	 */
+	public function getDependentTransactions()
+	{
+		return $this->dependentTransactions;
+	}
+	
+	/**
+	 * Lista de transacoes dependentes.<br>
+	 * 
+	 * *Obs.: Preencher a lista com o objeto {@link DependentTransaction}
+	 *
+	 * @param DependentTransaction
+	 */
+	public function setDependentTransactions(Array $dependentTransactions)
+	{
+		$this->dependentTransactions = $dependentTransactions;
+	}
+	
 	/**
 	 * Quantidade de Parcelas que a compra será processada<br>
 	 *
@@ -370,7 +397,6 @@ class TransactionRequest extends Model
 	{
 		return $this->installments;
 	}
-
 
 	/**
 	 * Quantidade de Parcelas que a compra será processada<br>

@@ -2,15 +2,19 @@
 
 namespace Bcash\Exception;
 
-class BaseException extends Exception
+class BaseException extends \Exception
 {
-
-	public function __construct($message, Exception $previous = null) {
-		parent::__construct($message, 0, $previous);
+	private $errors;
+	
+	public function __construct($errors, $message = "")
+	{
+		parent::__construct($message);
+		$this->errors = $errors;
 	}
-
-	public function __toString() {
-		return __CLASS__ . ": {$this->message}\n";
+	
+	public function getErrors()
+	{
+		return $this->errors;
 	}
 
 }
