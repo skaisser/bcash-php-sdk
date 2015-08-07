@@ -2,6 +2,7 @@
 
 namespace Bcash\Service;
 
+use Bcash\Service\IEnvironmentManager;
 use Bcash\Http\Authentication\OAuth;
 use Bcash\Http\PostRequest;
 use Bcash\Http\HttpHelper;
@@ -13,13 +14,15 @@ use Bcash\Config\Config;
  * Cliente para serviços de criação de transação.
  *
  */
-class Payment
+class Payment implements IEnvironmentManager
 {
 	private $consumer_key;
+	private $url;
 	
 	public function __construct($consumer_key)
 	{
-		$this->consumer_key = $consumer_key; 
+		$this->consumer_key = $consumer_key;
+		$this->url = Config::paymentHost;
 	}
 	
 	/**
@@ -38,7 +41,7 @@ class Payment
 	
 	private function generateRequest(TransactionRequest $transactionRequest)
 	{
-		$request = new PostRequest(Config::paymentHost);
+		$request = new PostRequest($this->url);
 		
 		$oAuth = new OAuth();
 		$request->addHeader($oAuth->generateHeader($this->consumer_key));
@@ -57,4 +60,12 @@ class Payment
 		return $response;
 	}
 	
+	public function enableSandBox($bool)
+	{
+		$this->url = Config::paymentHost;
+		
+		if ($bool){
+			$this->url = Config::paymentHostSandBox;
+		}
+	}
 }

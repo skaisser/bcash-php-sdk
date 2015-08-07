@@ -9,10 +9,12 @@ namespace Bcash\Config;
 class Config
 {
 	#Api config
-	const paymentHost = "http://localhost:8080/service/createTransaction/json";
+	const paymentHost = "https://api.bcash.com.br/service/createTransaction/json";
+	const paymentHostSandBox = "https://sandbox-api.bcash.com.br/service/createTransaction/json";
 	const paymentVersion = "1.0";
 	
-	const accountHost = "http://localhost:8080/service/searchAccount/json";
+	const accountHost = "https://api.bcash.com.br/service/searchAccount/json";
+	const accountHostSandBox = "https://sandbox-api.bcash.com.br/service/searchAccount/json";
 	const accountVersion = "1.0";
 	
 	const charset =  "UTF-8"; // UTF-8 or ISO-8859-1

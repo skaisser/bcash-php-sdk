@@ -193,3 +193,13 @@ try {
 	echo "</pre>";
 }
 ```
+
+## Usando o ambiente de testes
+```php
+
+/* ... */
+$payment->enableSandBox(true);
+$account->enableSandBox(true);
+/* ... */
+
+```
