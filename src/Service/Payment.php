@@ -64,7 +64,7 @@ class Payment implements IEnvironmentManager
 	{
 		$this->url = Config::paymentHost;
 		
-		if ($bool){
+		if ($bool) {
 			$this->url = Config::paymentHostSandBox;
 		}
 	}

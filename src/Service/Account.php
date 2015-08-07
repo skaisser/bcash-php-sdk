@@ -72,7 +72,7 @@ class Account implements IEnvironmentManager
 	{
 		$this->url = Config::accountHost;
 	
-		if ($bool){
+		if ($bool) {
 			$this->url = Config::accountHostSandBox;
 		}
 	}
