@@ -2,6 +2,7 @@
 
 namespace Bcash\Service;
 
+use Bcash\Service\IEnvironmentManager;
 use Bcash\Http\PostRequest;
 use Bcash\Config\Config;
 use Bcash\Http\Authentication\Basic;
@@ -12,15 +13,17 @@ use Bcash\Http\Connection;
  * Cliente para busca de contas
  *
  */
-class Account
+class Account implements IEnvironmentManager
 {
 	private $email;
 	private $token;
+	private $url;
 	
 	public function __construct($email, $token)
 	{
 		$this->email = $email;
 		$this->token = $token;
+		$this->url = Config::accountHost;
 	}
 	
 	/**
@@ -42,7 +45,7 @@ class Account
 	
 	private function generateRequest($cpf)
 	{
-		$request = new PostRequest(Config::accountHost);
+		$request = new PostRequest($this->url);
 	
 		$basic = new Basic();
 		$request->addHeader($basic->generateHeader($this->email, $this->token));
@@ -65,4 +68,13 @@ class Account
 		return $response;
 	}
 
+	public function enableSandBox($bool)
+	{
+		$this->url = Config::accountHost;
+	
+		if ($bool) {
+			$this->url = Config::accountHostSandBox;
+		}
+	}
+	
 }
