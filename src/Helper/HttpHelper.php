@@ -1,6 +1,6 @@
 <?php
 
-namespace Bcash\Http;
+namespace Bcash\Helper;
 
 class HttpHelper
 {
@@ -13,5 +13,5 @@ class HttpHelper
 	{
 		return json_decode($json);
 	}
-		
+
 }

@@ -6,7 +6,7 @@ use Bcash\Service\IEnvironmentManager;
 use Bcash\Http\PostRequest;
 use Bcash\Config\Config;
 use Bcash\Http\Authentication\Basic;
-use Bcash\Http\HttpHelper;
+use Bcash\Helper\HttpHelper;
 use Bcash\Http\Connection;
 
 /**
