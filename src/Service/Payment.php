@@ -22,7 +22,7 @@ class Payment implements IEnvironmentManager
 	public function __construct($consumer_key)
 	{
 		$this->consumer_key = $consumer_key;
-		$this->url = Config::paymentHost;
+		$this->url = Config::host . "/createTransaction/json";
 	}
 	
 	/**
@@ -46,7 +46,7 @@ class Payment implements IEnvironmentManager
 		$oAuth = new OAuth();
 		$request->addHeader($oAuth->generateHeader($this->consumer_key));
 		$request->addHeader("Content-Type:application/x-www-form-urlencoded;charset=".Config::charset);
-		$parameters = array("data"=> json_encode($transactionRequest->toArray()), "version" => Config::paymentVersion);
+		$parameters = array("data"=> json_encode($transactionRequest->toArray()), "version" => "1.0");
 		$request->setContent(HttpHelper::toQueryString($parameters));
 
 		return $request; 		
@@ -62,10 +62,10 @@ class Payment implements IEnvironmentManager
 	
 	public function enableSandBox($bool)
 	{
-		$this->url = Config::paymentHost;
-		
+		$this->url = Config::host . "/createTransaction/json";
+
 		if ($bool) {
-			$this->url = Config::paymentHostSandBox;
+			$this->url = Config::hostSandBox  . "/createTransaction/json";
 		}
 	}
 }

@@ -23,7 +23,7 @@ class Account implements IEnvironmentManager
 	{
 		$this->email = $email;
 		$this->token = $token;
-		$this->url = Config::accountHost;
+		$this->url = Config::host . "/searchAccount/json";
 	}
 	
 	/**
@@ -54,7 +54,7 @@ class Account implements IEnvironmentManager
 		$obj = new \stdClass;
 		$obj->cpf = $cpf;
 		
-		$parameters = array("data"=> json_encode($obj), "version" => Config::accountVersion);
+		$parameters = array("data"=> json_encode($obj), "version" => "1.0");
 		$request->setContent(HttpHelper::toQueryString($parameters));
 		
 		return $request;
@@ -70,10 +70,10 @@ class Account implements IEnvironmentManager
 
 	public function enableSandBox($bool)
 	{
-		$this->url = Config::accountHost;
-	
+		$this->url = Config::host . "/searchAccount/json";
+
 		if ($bool) {
-			$this->url = Config::accountHostSandBox;
+			$this->url = Config::hostSandBox . "/searchAccount/json";
 		}
 	}
 	

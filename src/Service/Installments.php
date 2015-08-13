@@ -23,7 +23,7 @@ class Installments implements IEnvironmentManager
 	{
 		$this->email = $email;
 		$this->token = $token;
-		$this->url = Config::installmentsHost;
+		$this->url = Config::host . "/seller/%s/installments";
 	}
 	
 	/**
@@ -73,10 +73,10 @@ class Installments implements IEnvironmentManager
 	
 	public function enableSandBox($bool)
 	{
-		$this->url = Config::installmentsHost;
+		$this->url = Config::host . "/seller/%s/installments";
 	
 		if ($bool) {
-			$this->url = Config::installmentsHostSandBox;
+			$this->url = Config::hostSandBox . "/seller/%s/installments";
 		}
 	}
 	
