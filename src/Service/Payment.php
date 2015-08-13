@@ -5,7 +5,7 @@ namespace Bcash\Service;
 use Bcash\Service\IEnvironmentManager;
 use Bcash\Http\Authentication\OAuth;
 use Bcash\Http\PostRequest;
-use Bcash\Http\HttpHelper;
+use Bcash\Helper\HttpHelper;
 use Bcash\Http\Connection;
 use Bcash\Domain\TransactionRequest;
 use Bcash\Config\Config;
