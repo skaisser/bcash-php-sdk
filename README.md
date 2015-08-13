@@ -194,12 +194,49 @@ try {
 }
 ```
 
+## Consulta de parcelamento
+```php
+require_once '../lib/bcash-php-sdk/autoloader.php';
+
+use Bcash\Service\Installments;
+use Bcash\Exception\ValidationException;
+use Bcash\Exception\ConnectionException;
+
+$email = "email@loja.com.br";
+$token = "SEU TOKEN";
+
+$installments = new Installments($email, $token);
+
+try {
+	$response = $installments->calculate("100.00", "24", "34708");
+	echo "<pre>";
+	var_dump($response);die;
+	echo "</pre>";
+
+} catch (ValidationException $e) {
+	echo "ErroTeste: " . $e->getMessage() . "\n";
+	echo "<pre>";
+	var_dump($e->getErrors());die;
+	echo "</pre>";
+
+} catch (ConnectionException $e) {
+	echo "ErroTeste: " . $e->getMessage() . "\n";
+	echo "<pre>";
+	var_dump($e->getErrors());die;
+	echo "</pre>";
+}
+
+
+```
+
+
 ## Usando o ambiente de testes
 ```php
 
 /* ... */
 $payment->enableSandBox(true);
 $account->enableSandBox(true);
+$installments->enableSandBox(true);
 /* ... */
 
 ```
