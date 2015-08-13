@@ -29,7 +29,17 @@ class Connection {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
 		curl_setopt($ch, CURLOPT_POST, count($request->getContent()));
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getContent());
-		
+
+		return $this->send($ch);
+	}
+
+	public function get(GetRequest $request)
+	{
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $request->getUrl());
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
+
 		return $this->send($ch);
 	}
 
