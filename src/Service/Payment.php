@@ -16,13 +16,14 @@ use Bcash\Config\Config;
  */
 class Payment implements IEnvironmentManager
 {
+	const route = "/createTransaction/json";
 	private $consumer_key;
 	private $url;
 	
 	public function __construct($consumer_key)
 	{
 		$this->consumer_key = $consumer_key;
-		$this->url = Config::host . "/createTransaction/json";
+		$this->url = Config::host . self::route;
 	}
 	
 	/**
@@ -62,10 +63,10 @@ class Payment implements IEnvironmentManager
 	
 	public function enableSandBox($bool)
 	{
-		$this->url = Config::host . "/createTransaction/json";
+		$this->url = Config::host . self::route;
 
 		if ($bool) {
-			$this->url = Config::hostSandBox  . "/createTransaction/json";
+			$this->url = Config::hostSandBox  . self::route;
 		}
 	}
 }

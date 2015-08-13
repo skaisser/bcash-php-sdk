@@ -15,6 +15,7 @@ use Bcash\Http\Connection;
  */
 class Account implements IEnvironmentManager
 {
+	const route = "/searchAccount/json";
 	private $email;
 	private $token;
 	private $url;
@@ -23,7 +24,7 @@ class Account implements IEnvironmentManager
 	{
 		$this->email = $email;
 		$this->token = $token;
-		$this->url = Config::host . "/searchAccount/json";
+		$this->url = Config::host . self::route;
 	}
 	
 	/**
@@ -70,10 +71,10 @@ class Account implements IEnvironmentManager
 
 	public function enableSandBox($bool)
 	{
-		$this->url = Config::host . "/searchAccount/json";
+		$this->url = Config::host . self::route;
 
 		if ($bool) {
-			$this->url = Config::hostSandBox . "/searchAccount/json";
+			$this->url = Config::hostSandBox .  self::route;
 		}
 	}
 	
