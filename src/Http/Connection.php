@@ -8,8 +8,8 @@ use Bcash\Helper\HttpHelper;
 use Bcash\Exception\ValidationException;
 use Bcash\Exception\ConnectionException;
 
-class Connection {
-
+class Connection 
+{
 	private $timeout;
 
 	public function __construct($timeout = 60)

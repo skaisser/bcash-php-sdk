@@ -2,8 +2,8 @@
 
 namespace Bcash\Http;
 
-class GetRequest{
-		
+class GetRequest
+{
 	private $url;
 	private $headers;	
 	private $params;

@@ -2,8 +2,8 @@
 
 namespace Bcash\Http;
 
-class PostRequest{
-
+class PostRequest
+{
 	private $url;
 	private $headers;
 	private $params;
