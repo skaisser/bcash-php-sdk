@@ -33,15 +33,15 @@ class Cancellation implements IEnvironmentManager
 	 * @param id_transacao
 	 *            Id da transação no Bcash a ser cancelada.
 	 */
-	public function execute($id_transacao)
+	public function execute($transactionId)
 	{
-		$request = $this->generateRequest($id_transacao);
+		$request = $this->generateRequest($transactionId);
 		$response = $this->send($request);
 
 		return HttpHelper::fromJson($response->getContent());
 	}
 
-	private function generateRequest($id_transacao)
+	private function generateRequest($transactionId)
 	{
 		$request = new PutRequest($this->url);
 
@@ -49,7 +49,7 @@ class Cancellation implements IEnvironmentManager
 		$request->addHeader($basic->generateHeader($this->email, $this->token));
 		$request->addHeader("Content-Type:application/x-www-form-urlencoded;charset=".Config::charset);
 
-		$request->setUrl(vsprintf($this->url, $id_transacao));
+		$request->setUrl(vsprintf($this->url, $transactionId));
 
 		return $request;
 	}
