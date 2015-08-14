@@ -243,7 +243,12 @@ $token = "SEU TOKEN";
 $consultation = new Consultation($email, $token);
 
 try {
-	$response = $consultation->searchBy('1865811');
+	//Consulta pelo id da transação
+	$response = $consultation->searchBy("id_transacao");
+	//OU
+	//Consulta pelo id do pedido
+	$response = $consultation->searchBy("id_pedido");
+	
 	echo "<pre>";
 	var_dump($response);die;
 	echo "</pre>";
