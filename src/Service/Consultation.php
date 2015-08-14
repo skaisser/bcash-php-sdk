@@ -3,7 +3,7 @@
 namespace Bcash\Service;
 
 use Bcash\Service\IEnvironmentManager;
-use Bcash\Http\GetRequest;
+use Bcash\Http\PostRequest;
 use Bcash\Config\Config;
 use Bcash\Http\Authentication\Basic;
 use Bcash\Helper\HttpHelper;
@@ -15,7 +15,7 @@ use Bcash\Http\Connection;
  */
 class Consultation implements IEnvironmentManager
 {
-	const route = "/report/customers/%s/transactions/%s";
+	const route = "/transacao/consulta";
 	private $email;
 	private $token;
 	private $url;
@@ -24,33 +24,48 @@ class Consultation implements IEnvironmentManager
 	{
 		$this->email = $email;
 		$this->token = $token;
-		$this->url = Config::host . self::route;
+		$this->url = Config::siteHost . self::route;
 	}
 
 	/**
-	 * Busca os dados da transação informada.
+	 * Busca os dados da transação pelo id da transação no Bcash.
 	 *
 	 * @param id_transacao
 	 *           Id da transação no Bcash a ser consultada.
 	 * @return Objeto que contém informações da busca
 	 */
-	public function searchBy($id_transacao)
+	public function searchByTransaction($id_transacao)
 	{
-		$request = $this->generateRequest($id_transacao);
+		$request = $this->generateRequest("id_transacao", $id_transacao);
 		$response = $this->send($request);
 
 		return HttpHelper::fromJson($response->getContent());
 	}
 
-	private function generateRequest($id_transacao)
+	/**
+	 * Busca os dados da transação pelo id do pedido.
+	 *
+	 * @param id_pedido
+	 *           Id do pedido a ser consultado.
+	 * @return Objeto que contém informações da busca
+	 */
+	public function searchByOrder($id_pedido)
 	{
-		$request = new GetRequest($this->url);
+		$request = $this->generateRequest("id_pedido", $id_pedido);
+		$response = $this->send($request);
+
+		return HttpHelper::fromJson($response->getContent());
+	}
+
+	private function generateRequest($param, $value)
+	{
+		$request = new PostRequest($this->url);
 
 		$basic = new Basic();
 		$request->addHeader($basic->generateHeader($this->email, $this->token));
-		$request->addHeader("Content-Type:application/x-www-form-urlencoded;charset=" . Config::charset);
 
-		$request->setUrl( vsprintf( $this->url, Array($this->email, $id_transacao) ) );
+		$parameters = array($param => $value, "codificacao" => Config::charset, "tipo_retorno" => 2);
+		$request->setContent(HttpHelper::toQueryString($parameters));
 
 		return $request;
 	}
@@ -58,17 +73,17 @@ class Consultation implements IEnvironmentManager
 	private function send($request)
 	{
 		$connection = new Connection(Config::timeout);
-		$response = $connection->get($request);
+		$response = $connection->post($request);
 
 		return $response;
 	}
 
 	public function enableSandBox($bool)
 	{
-		$this->url = Config::host . self::route;
+		$this->url = Config::siteHost . self::route;
 
 		if ($bool) {
-			$this->url = Config::hostSandBox .  self::route;
+			$this->url = Config::siteHostSandBox .  self::route;
 		}
 	}
 
