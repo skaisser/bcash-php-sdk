@@ -229,7 +229,7 @@ try {
 
 ```
 
-## Consulta de conta
+## Consulta de transacao
 ```php
 require_once '../lib/bcash-php-sdk/autoloader.php';
 
