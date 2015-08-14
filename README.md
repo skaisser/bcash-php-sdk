@@ -242,7 +242,8 @@ $token = "SEU TOKEN";
 $cancellation = new Cancellation($email, $token);
 
 try {
-	$response = $cancellation->execute('186148');
+    $transactionId = 186148; // Id da transacao bcash a ser cancelada
+	$response = $cancellation->execute($transactionId);
 	echo "<pre>";
 	var_dump($response);die;
 	echo "</pre>";
