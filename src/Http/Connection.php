@@ -45,6 +45,19 @@ class Connection
 		return $this->send($ch);
 	}
 
+	public function put(PutRequest $request)
+	{
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $request->getUrl());
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getContent());
+
+		return $this->send($ch);
+	}
+
+	
 	private function send($ch)
 	{
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
