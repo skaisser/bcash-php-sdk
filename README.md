@@ -97,13 +97,13 @@ try {
 	echo "<pre>";
 	var_dump($response);die;
 	echo "</pre>";
-	
+
 } catch (ValidationException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
 	var_dump($e->getErrors());die;
 	echo "</pre>";
-	
+
 } catch (ConnectionException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
@@ -145,11 +145,11 @@ function createDependentTransactions()
 	$dep1 = new DependentTransaction();
 	$dep1->setEmail("dep1@email.com");
 	$dep1->setValue("1.00");
-	
+
 	$dep2 = new DependentTransaction();
 	$dep2->setEmail("dep2@email.com");
 	$dep2->setValue("1.95");
-	
+
 	$deps = array($dep1, $dep2); 
 	return $deps;	
 }
@@ -226,9 +226,41 @@ try {
 	echo "</pre>";
 }
 
-
 ```
 
+## Cancelamento de transação
+```php
+require_once '../lib/bcash-php-sdk/autoloader.php';
+
+use Bcash\Service\Cancellation;
+use Bcash\Exception\ValidationException;
+use Bcash\Exception\ConnectionException;
+
+$email = "email@loja.com.br";
+$token = "SEU TOKEN";
+
+$cancellation = new Cancellation($email, $token);
+
+try {
+	$response = $cancellation->execute('186148');
+	echo "<pre>";
+	var_dump($response);die;
+	echo "</pre>";
+
+} catch (ValidationException $e) {
+	echo "ErroTeste: " . $e->getMessage() . "\n";
+	echo "<pre>";
+	var_dump($e->getErrors());die;
+	echo "</pre>";
+
+} catch (ConnectionException $e) {
+	echo "ErroTeste: " . $e->getMessage() . "\n";
+	echo "<pre>";
+	var_dump($e->getErrors());die;
+	echo "</pre>";
+}
+
+```
 
 ## Usando o ambiente de testes
 ```php
