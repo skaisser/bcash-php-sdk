@@ -10,6 +10,7 @@ use Bcash\Exception\ConnectionException;
 
 class Connection
 {
+
 	const USER_AGENT = "bcash-php-sdk-1.0.0";
 	private $timeout;
 
