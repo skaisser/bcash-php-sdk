@@ -244,10 +244,12 @@ $consultation = new Consultation($email, $token);
 
 try {
 	//Consulta pelo id da transação
-	$response = $consultation->searchBy("id_transacao");
+	$transactionId = 999999; // id bcash da transacao a ser consultada
+	$response = $consultation->searchByTransaction($transactionId);
 	//OU
 	//Consulta pelo id do pedido
-	$response = $consultation->searchBy("id_pedido");
+	$orderId = "my-store-123456"; // id da sua loja enviado na criação da transação
+	$response = $consultation->searchByOrder($orderid);
 	
 	echo "<pre>";
 	var_dump($response);die;
