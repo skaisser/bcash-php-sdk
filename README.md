@@ -228,7 +228,6 @@ try {
 
 ```
 
-<<<<<<< HEAD
 ## Cancelamento de transação
 ```php
 require_once '../lib/bcash-php-sdk/autoloader.php';
