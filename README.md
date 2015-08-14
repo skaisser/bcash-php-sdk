@@ -229,6 +229,46 @@ try {
 
 ```
 
+## Consulta de transação
+```php
+require_once '../lib/bcash-php-sdk/autoloader.php';
+
+use Bcash\Service\Consultation;
+use Bcash\Exception\ValidationException;
+use Bcash\Exception\ConnectionException;
+
+$email = "email@loja.com.br";
+$token = "SEU TOKEN";
+
+$consultation = new Consultation($email, $token);
+
+try {
+	//Consulta pelo id da transação
+	$transactionId = 999999; // id bcash da transacao a ser consultada
+	$response = $consultation->searchByTransaction($transactionId);
+	//OU
+	//Consulta pelo id do pedido
+	$orderId = "my-store-123456"; // id da sua loja enviado na criação da transação
+	$response = $consultation->searchByOrder($orderid);
+	
+	echo "<pre>";
+	var_dump($response);die;
+	echo "</pre>";
+
+} catch (ValidationException $e) {
+	echo "ErroTeste: " . $e->getMessage() . "\n";
+	echo "<pre>";
+	var_dump($e->getErrors());die;
+	echo "</pre>";
+
+} catch (ConnectionException $e) {
+	echo "ErroTeste: " . $e->getMessage() . "\n";
+	echo "<pre>";
+	var_dump($e->getErrors());die;
+	echo "</pre>";
+}
+
+```
 
 ## Usando o ambiente de testes
 ```php
@@ -237,6 +277,7 @@ try {
 $payment->enableSandBox(true);
 $account->enableSandBox(true);
 $installments->enableSandBox(true);
+$consultation->enableSandBox(true);
 /* ... */
 
 ```
