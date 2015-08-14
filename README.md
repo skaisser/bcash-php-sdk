@@ -269,6 +269,7 @@ try {
 $payment->enableSandBox(true);
 $account->enableSandBox(true);
 $installments->enableSandBox(true);
+$cancellation->enableSandBox(true);
 /* ... */
 
 ```
