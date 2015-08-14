@@ -11,7 +11,7 @@ use Bcash\Exception\ConnectionException;
 class Connection
 {
 
-	const USER_AGENT = "bcash-php-sdk-1.0.0";
+	const USER_AGENT = "bcash-php-sdk-2.0.0";
 	private $timeout;
 
 	public function __construct($timeout = 60)
@@ -49,7 +49,7 @@ class Connection
 	{
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_USERAGENT,  self::USER_AGENT,
+		curl_setopt($ch, CURLOPT_USERAGENT, self::USER_AGENT);
 
 		$response = new Response(curl_exec($ch), curl_getinfo($ch, CURLINFO_HTTP_CODE));
 		$response = $this->responseResolver($response, $ch);
