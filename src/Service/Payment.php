@@ -16,13 +16,14 @@ use Bcash\Config\Config;
  */
 class Payment implements IEnvironmentManager
 {
+	const route = "/createTransaction/json";
 	private $consumer_key;
 	private $url;
 	
 	public function __construct($consumer_key)
 	{
 		$this->consumer_key = $consumer_key;
-		$this->url = Config::paymentHost;
+		$this->url = Config::host . self::route;
 	}
 	
 	/**
@@ -46,7 +47,7 @@ class Payment implements IEnvironmentManager
 		$oAuth = new OAuth();
 		$request->addHeader($oAuth->generateHeader($this->consumer_key));
 		$request->addHeader("Content-Type:application/x-www-form-urlencoded;charset=".Config::charset);
-		$parameters = array("data"=> json_encode($transactionRequest->toArray()), "version" => Config::paymentVersion);
+		$parameters = array("data"=> json_encode($transactionRequest->toArray()), "version" => "1.0");
 		$request->setContent(HttpHelper::toQueryString($parameters));
 
 		return $request; 		
@@ -62,10 +63,10 @@ class Payment implements IEnvironmentManager
 	
 	public function enableSandBox($bool)
 	{
-		$this->url = Config::paymentHost;
-		
+		$this->url = Config::host . self::route;
+
 		if ($bool) {
-			$this->url = Config::paymentHostSandBox;
+			$this->url = Config::hostSandBox  . self::route;
 		}
 	}
 }

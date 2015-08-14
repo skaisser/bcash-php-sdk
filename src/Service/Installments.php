@@ -15,6 +15,7 @@ use Bcash\Http\Connection;
  */
 class Installments implements IEnvironmentManager
 {
+	const route = "/seller/%s/installments";
 	private $email;
 	private $token;
 	private $url;
@@ -23,7 +24,7 @@ class Installments implements IEnvironmentManager
 	{
 		$this->email = $email;
 		$this->token = $token;
-		$this->url = Config::installmentsHost;
+		$this->url = Config::host . self::route;
 	}
 	
 	/**
@@ -73,10 +74,10 @@ class Installments implements IEnvironmentManager
 	
 	public function enableSandBox($bool)
 	{
-		$this->url = Config::installmentsHost;
+		$this->url = Config::host . self::route;
 	
 		if ($bool) {
-			$this->url = Config::installmentsHostSandBox;
+			$this->url = Config::hostSandBox . self::route;
 		}
 	}
 	
