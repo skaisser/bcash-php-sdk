@@ -269,19 +269,31 @@ try {
 ```
 
 ## Notificação (Atualizando status da transação na sua loja)
+
+O Bcash realizará as notificações na URL informada durante a criação da 
+transação:
+```php
+$transactionRequest->setUrlNotification("https://www.minhaloja.com.br/notification.php");
+```
+O seguinte exemplo demonstra como deve ser realizado o recebimento
+do post de retorno na url informada.
+
 ```php
 require_once '../lib/bcash-php-sdk/autoloader.php';
 
 use Bcash\Service\Notification;
 use Bcash\Domain\NotificationContent;
+use Bcash\Domain\NotificationStatusEnum;
 use Bcash\Exception\ValidationException;
 use Bcash\Exception\ConnectionException;
 
-$transacao_id = $_POST['transacao_id'];
-$pedido = $_POST['pedido'];
+/* Dados do post enviado pelo Bcash */
+$transactionId = $_POST['transacao_id'];
+$orderId = $_POST['pedido'];
+$statusId = $_POST['status_id'];
 $status = $_POST['status'];
 
-$notificationContent = new NotificationContent($transacao_id, $pedido, $status);
+$notificationContent = new NotificationContent($transactionId, $orderId, $status);
 
 $email = "email@loja.com.br";
 $token = "SEU TOKEN";
@@ -289,7 +301,8 @@ $token = "SEU TOKEN";
 $notification = new Notification($email, $token, $notificationContent);
 
 try {
-	$transactionValue = "273.20";
+	/* valor dos produtos + frete + acrecimo - desconto */
+	$transactionValue = 273.20;
 	$result = $notification->verify($transactionValue);
 
 } catch (ValidationException $e) {
@@ -305,6 +318,13 @@ if ($result == true) {
 	$log->write('Notificação legitima');
 
 	//ATUALIZAR STATUS NA LOJA
+	if ($statusId == NotificationStatusEnum::APPROVED) {
+	   // Liberar transação
+	} else if ($statusId == NotificationStatusEnum::CANCELLED) {
+	  // Cancelar transação
+	}
+
+	/* Verificar outros status na classe Bcash\Domain\NotificationStatusEnum */
 
 } else {
 	$log->write('Notificação ilegitima');
