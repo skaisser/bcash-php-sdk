@@ -340,12 +340,12 @@ use Bcash\Test\NotificationSimulator;
 use Bcash\Exception\ConnectionException;
 
 $notificationUrl = "https://hostofstore.com/address/alert";
-$idTransaction = "id_transacao";
-$idOrder = "id_pedido";
-$status = "Em andamento";
+$transactionId = 987654321;  // id transacao do bcash
+$orderId = "my-store-1234"; // id pedido da sua loja
+$statusId = 3; // Aprovada
 
 try {
-	$result = NotificationSimulator::test ($notificationUrl, $idTransaction, $idOrder, $status);
+	$result = NotificationSimulator::test ($notificationUrl, $transactionId, $orderId, $statusId);
 
 	echo "<pre>";
 	var_dump($result);die;
