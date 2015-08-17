@@ -268,6 +268,50 @@ try {
 
 ```
 
+## Notificação (Atualizando status da transação na sua loja)
+```php
+require_once '../lib/bcash-php-sdk/autoloader.php';
+
+use Bcash\Service\Notification;
+use Bcash\Domain\NotificationContent;
+use Bcash\Exception\ValidationException;
+use Bcash\Exception\ConnectionException;
+
+$transacao_id = $_POST['transacao_id'];
+$pedido = $_POST['pedido'];
+$status = $_POST['status'];
+
+$notificationContent = new NotificationContent($transacao_id, $pedido, $status);
+
+$email = "email@loja.com.br";
+$token = "SEU TOKEN";
+
+$notification = new Notification($email, $token, $notificationContent);
+
+try {
+	$transactionValue = "273.20";
+	$result = $notification->verify($transactionValue);
+
+} catch (ValidationException $e) {
+	$log->write("ErroTeste: " . $e->getMessage());
+	$log->write($e->getErrors());
+
+} catch (ConnectionException $e) {
+	$log->write("ErroTeste: " . $e->getMessage());
+	$log->write($e->getErrors());
+}
+
+if ($result == true) {
+	$log->write('Notificação legitima');
+
+	//ATUALIZAR STATUS NA LOJA
+
+} else {
+	$log->write('Notificação ilegitima');
+}
+
+```
+
 ## Usando o ambiente de testes
 ```php
 
@@ -276,6 +320,7 @@ $payment->enableSandBox(true);
 $account->enableSandBox(true);
 $installments->enableSandBox(true);
 $consultation->enableSandBox(true);
+$notification->enableSandBox(true);
 /* ... */
 
 ```
