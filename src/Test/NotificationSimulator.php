@@ -35,8 +35,28 @@ class NotificationSimulator
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-		$response = curl_exec($ch);
+		$result = curl_exec($ch);
+
+		$response = new \StdClass;
+
+		if ($result === false) {
+			$response->message = 'Curl error: ' . curl_error($ch);
+			return $response;
+		}
+
+		$response->code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
 		curl_close($ch);
+
+		if ($response->code == 200) {
+			$response->message = "Request successfully delivered: " . $request->getContent() . " for URL " . $request->getUrl(); 
+			return $response;
+		}
+
+		if ($response->code == 404) {
+			$response->message = "Url not found: " . $request->getUrl();
+			return $response;
+		}
 
 		return $response;
 	}
