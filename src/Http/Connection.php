@@ -82,9 +82,7 @@ class Connection
 			throw new ValidationException(HttpHelper::fromJson($response->getContent()));
 		}
 
- 		if ($response->isFail()) {
-			throw new ConnectionException(HttpHelper::fromJson($response->getContent()), curl_error($ch));
- 		}
+		throw new ConnectionException(HttpHelper::fromJson($response->getContent()), curl_error($ch));
 	}
 
 }
