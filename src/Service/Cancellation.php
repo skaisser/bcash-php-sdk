@@ -4,7 +4,7 @@ namespace Bcash\Service;
 
 use Bcash\Service\IEnvironmentManager;
 use Bcash\Http\Authentication\Basic;
-use Bcash\Http\PutRequest;
+use Bcash\Http\PostRequest;
 use Bcash\Helper\HttpHelper;
 use Bcash\Http\Connection;
 use Bcash\Config\Config;
@@ -15,7 +15,7 @@ use Bcash\Config\Config;
  */
 class Cancellation implements IEnvironmentManager
 {
-	const route = "/sevenDayCancel/%s/json";
+	const route = "/transactions/%s/cancel";
 	private $email;
 	private $token;
 	private $url;
@@ -43,11 +43,11 @@ class Cancellation implements IEnvironmentManager
 
 	private function generateRequest($transactionId)
 	{
-		$request = new PutRequest($this->url);
+		$request = new PostRequest($this->url);
 
 		$basic = new Basic();
 		$request->addHeader($basic->generateHeader($this->email, $this->token));
-		$request->addHeader("Content-Type:application/x-www-form-urlencoded;charset=".Config::charset);
+		$request->addHeader("Content-Type:application/json;charset=".Config::charset);
 
 		$request->setUrl(vsprintf($this->url, $transactionId));
 
@@ -57,7 +57,7 @@ class Cancellation implements IEnvironmentManager
 	private function send($request)
 	{
 		$connection = new Connection(Config::timeout);
-		$response = $connection->put($request);
+		$response = $connection->post($request);
 
 		return $response;
 	}
