@@ -3,14 +3,13 @@
 namespace Bcash\Service;
 
 use Bcash\Service\Consultation;
+use Bcash\Domain\NotificationContent;
 
 class Notification implements IEnvironmentManager
 {
 	private $email;
 	private $token;
-	private $id_transacao;
-	private $pedido;
-	private $status;
+	private $notificationContent;
 	private $transaction;
 	private $sandBox;
 
@@ -22,7 +21,7 @@ class Notification implements IEnvironmentManager
 	 * @param Array notificationContent
 	 *           Conteúdo recebido na notificação
 	 */
-	public function __construct($email, $token, $notificationContent = array())
+	public function __construct($email, $token, NotificationContent $notificationContent)
 	{
 		$this->email = $email;
 		$this->token = $token;
@@ -32,9 +31,7 @@ class Notification implements IEnvironmentManager
 		}
 
 		$this->sandBox = false;
-		$this->id_transacao = $notificationContent['transacao_id'];
-		$this->pedido = $notificationContent['pedido'];
-		$this->status = $notificationContent['status'];
+		$this->notificationContent = $notificationContent;
 	}
 
 	/**
@@ -47,11 +44,7 @@ class Notification implements IEnvironmentManager
 	{
 		$this->recoverTransaction();
 
-		if (!$this->compareStatus()) {
-			return false;
-		}
-
-		if (!$this->compareValue($transactionValue)) {
+		if (!$this->compareStatus() || !$this->compareValue($transactionValue) || !$this->compareOrder()) {
 			return false;
 		}
 
@@ -67,7 +60,14 @@ class Notification implements IEnvironmentManager
 	private function compareStatus() 
 	{
 		$consultado = $this->transaction->status;
-		$recebido = $this->status;
+		$recebido = $this->notificationContent->getStatus();
+		return $consultado == $recebido;
+	}
+
+	private function compareOrder()
+	{
+		$consultado = $this->transaction->id_pedido;
+		$recebido = $this->notificationContent->getPedido();
 		return $consultado == $recebido;
 	}
 
@@ -79,7 +79,7 @@ class Notification implements IEnvironmentManager
 
 		$consultation = new Consultation($this->email, $this->token);
 		$consultation->enableSandBox($this->sandBox);
-		$this->transaction = $consultation->searchByTransaction($this->id_transacao);
+		$this->transaction = $consultation->searchByTransaction($this->notificationContent->getIdTransaction());
 		$this->transaction = $this->transaction->transacao;
 	}
 
