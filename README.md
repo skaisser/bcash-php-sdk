@@ -306,6 +306,98 @@ try {
 
 ```
 
+## Notificação (Atualizando status da transação na sua loja)
+
+O Bcash realizará as notificações na URL informada durante a criação da 
+transação:
+```php
+$transactionRequest->setUrlNotification("https://www.minhaloja.com.br/notification.php");
+```
+O seguinte exemplo demonstra como deve ser realizado o recebimento
+do post de retorno na url informada.
+
+```php
+require_once '../lib/bcash-php-sdk/autoloader.php';
+
+use Bcash\Service\Notification;
+use Bcash\Domain\NotificationContent;
+use Bcash\Domain\NotificationStatusEnum;
+use Bcash\Exception\ValidationException;
+use Bcash\Exception\ConnectionException;
+
+/* Dados do post enviado pelo Bcash */
+$transactionId = $_POST['transacao_id'];
+$orderId = $_POST['pedido'];
+$statusId = $_POST['status_id'];
+$status = $_POST['status'];
+
+$notificationContent = new NotificationContent($transactionId, $orderId, $statusId);
+
+$email = "email@loja.com.br";
+$token = "SEU TOKEN";
+
+$notification = new Notification($email, $token, $notificationContent);
+
+try {
+	/* valor dos produtos + frete + acrecimo - desconto */
+	$transactionValue = 273.20;
+	$result = $notification->verify($transactionValue);
+
+} catch (ValidationException $e) {
+	$log->write("ErroTeste: " . $e->getMessage());
+	$log->write($e->getErrors());
+
+} catch (ConnectionException $e) {
+	$log->write("ErroTeste: " . $e->getMessage());
+	$log->write($e->getErrors());
+}
+
+if ($result == true) {
+	$log->write('Notificação legitima');
+
+	//ATUALIZAR STATUS NA LOJA
+	if ($statusId == NotificationStatusEnum::APPROVED) {
+	   // Liberar transação
+	} else if ($statusId == NotificationStatusEnum::CANCELLED) {
+	  // Cancelar transação
+	}
+
+	/* Verificar outros status na classe Bcash\Domain\NotificationStatusEnum */
+
+} else {
+	$log->write('Notificação ilegitima');
+}
+
+```
+
+## Simulando a notificação
+```php
+require_once '../lib/bcash-php-sdk/autoloader.php';
+
+use Bcash\Test\NotificationSimulator;
+use Bcash\Exception\ConnectionException;
+
+$notificationUrl = "https://hostofstore.com/address/alert";
+$transactionId = 987654321;  // id transacao do bcash
+$orderId = "my-store-1234"; // id pedido da sua loja
+$statusId = 3; // Aprovada
+
+try {
+	$result = NotificationSimulator::test ($notificationUrl, $transactionId, $orderId, $statusId);
+
+	echo "<pre>";
+	var_dump($result);die;
+	echo "</pre>";
+
+} catch (ConnectionException $e) {
+	echo "ErroTeste: " . $e->getMessage() . "\n";
+	echo "<pre>";
+	var_dump($e->getErrors());die;
+	echo "</pre>";
+}
+
+```
+
 ## Usando o ambiente de testes
 ```php
 
@@ -315,6 +407,7 @@ $account->enableSandBox(true);
 $installments->enableSandBox(true);
 $cancellation->enableSandBox(true);
 $consultation->enableSandBox(true);
+$notification->enableSandBox(true);
 /* ... */
 
 ```
