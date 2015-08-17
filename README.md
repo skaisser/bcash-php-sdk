@@ -293,7 +293,7 @@ $orderId = $_POST['pedido'];
 $statusId = $_POST['status_id'];
 $status = $_POST['status'];
 
-$notificationContent = new NotificationContent($transactionId, $orderId, $status);
+$notificationContent = new NotificationContent($transactionId, $orderId, $statusId);
 
 $email = "email@loja.com.br";
 $token = "SEU TOKEN";

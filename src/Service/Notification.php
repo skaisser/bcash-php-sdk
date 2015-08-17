@@ -42,7 +42,7 @@ class Notification implements IEnvironmentManager
 	 */
 	public function verify($transactionValue)
 	{
-		$this->recoverTransaction();
+		$this->getTransaction();
 
 		if (!$this->compareStatus() || !$this->compareValue($transactionValue) || !$this->compareOrder()) {
 			return false;
@@ -57,9 +57,9 @@ class Notification implements IEnvironmentManager
 		return $consultado == $value;
 	}
 
-	private function compareStatus() 
+	private function compareStatus()
 	{
-		$consultado = $this->transaction->status;
+		$consultado = $this->transaction->cod_status;
 		$recebido = $this->notificationContent->getStatus();
 		return $consultado == $recebido;
 	}
@@ -71,9 +71,9 @@ class Notification implements IEnvironmentManager
 		return $consultado == $recebido;
 	}
 
-	private function recoverTransaction() 
+	private function getTransaction()
 	{
-		if (!empty($transaction)){
+		if (!empty($transaction)) {
 			return;
 		}
 
