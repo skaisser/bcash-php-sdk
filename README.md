@@ -312,6 +312,34 @@ if ($result == true) {
 
 ```
 
+## Simulando a notificação
+```php
+require_once '../lib/bcash-php-sdk/autoloader.php';
+
+use Bcash\Test\NotificationSimulator;
+use Bcash\Exception\ConnectionException;
+
+$notificationUrl = "https://hostofstore.com/address/alert";
+$idTransaction = "id_transacao";
+$idOrder = "id_pedido";
+$status = "Em andamento";
+
+try {
+	$result = NotificationSimulator::test ($notificationUrl, $idTransaction, $idOrder, $status);
+
+	echo "<pre>";
+	var_dump($result);die;
+	echo "</pre>";
+
+} catch (ConnectionException $e) {
+	echo "ErroTeste: " . $e->getMessage() . "\n";
+	echo "<pre>";
+	var_dump($e->getErrors());die;
+	echo "</pre>";
+}
+
+```
+
 ## Usando o ambiente de testes
 ```php
 
