@@ -15,7 +15,7 @@ use Bcash\Domain\NotificationStatusEnum;
 class NotificationSimulator
 {
 
-	const STATUS_DESCRIPTION = array(
+	public static $STATUS_DESCRIPTION = array(
 		1 => "Em andamento",
 		3 => "Aprovada",
 		4 => "Concluída",
@@ -32,7 +32,7 @@ class NotificationSimulator
 			"transacao_id" => $id_transacao,
 			"pedido" => $id_pedido,
 			"status_id" => $id_status,
-			"status" => self::STATUS_DESCRIPTION[$id_status];
+			"status" => self::$STATUS_DESCRIPTION[$id_status]
 		);
 
 		$request->setContent(HttpHelper::toQueryString($parameters));
