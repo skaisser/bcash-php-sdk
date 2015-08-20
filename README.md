@@ -208,9 +208,9 @@ $token = "SEU TOKEN";
 $installments = new Installments($email, $token);
 
 try {
-	$amount = 100; //Valor para cálculo
+	$amount = 100.00; //Valor para cálculo
 	$maxInstallments = 2; //Quantidade máxima de parcelas
-	$ignoreScheduledDiscount = 0; //Ignorar descontos programados
+	$ignoreScheduledDiscount = false; //Ignorar descontos programados
  	$response = $installments->calculate($amount, $maxInstallments, $ignoreScheduledDiscount);
 
 	echo "<pre>";
