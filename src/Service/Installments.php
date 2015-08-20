@@ -59,8 +59,10 @@ class Installments implements IEnvironmentManager
 			$request->addParam("maxInstallments", $max);
 		}
 
-		if ($ignoreScheduledDiscount != null) {
-			$request->addParam("ignoreScheduledDiscount", $ignoreScheduledDiscount);
+		$request->addParam("ignoreScheduledDiscount", 0);
+
+		if ($ignoreScheduledDiscount === true){
+			$request->addParam("ignoreScheduledDiscount", 1);
 		}
 
 		$request->setUrl($this->url . "?" . http_build_query($request->getParams(), '', '&')); 
