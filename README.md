@@ -7,6 +7,21 @@
  * PHP >= 5.3
  * extensões: cURL e JSON.
 
+## Instalando utilizando o composer
+
+Adicione a dependencia do sdk no seu arquivo de configuração do composer. Por exemmplo:
+
+```javascript
+{
+    "config": {
+        "vendor-dir": "lib"
+    },
+    "require": {
+        "bcash/bcash-php-sdk": "dev-develop"
+    }
+}
+```
+
 ## Exemplo de criação de transação
 ```php
 <?php
