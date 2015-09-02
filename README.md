@@ -335,7 +335,7 @@ transação:
 $transactionRequest->setUrlNotification("https://www.minhaloja.com.br/notification.php");
 ```
 O seguinte exemplo demonstra como deve ser realizado o recebimento
-do post de retorno na url informada.
+da notificação de alteração de status na url informada.
 
 ```php
 require_once '../lib/bcash-php-sdk/autoloader.php';
