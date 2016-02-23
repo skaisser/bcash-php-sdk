@@ -50,7 +50,7 @@ function createAddress()
 	$address->setNeighborhood("Centro");
 	$address->setCity("São Paulo");
 	$address->setState(StateEnum::SAO_PAULO);
-	$address->setZipCode("01305000");
+	$address->setZipCode("01306000");
 	return $address;
 }
 
