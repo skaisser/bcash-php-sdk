@@ -41,7 +41,6 @@ use Bcash\Service\Payment;
 use Bcash\Exception\ConnectionException;
 use Bcash\Exception\ValidationException;
 
-
 function createAddress()
 {
 	$address = new Address();
@@ -51,7 +50,7 @@ function createAddress()
 	$address->setNeighborhood("Centro");
 	$address->setCity("São Paulo");
 	$address->setState(StateEnum::SAO_PAULO);
-	$address->setZipCode("17500000");
+	$address->setZipCode("01306000");
 	return $address;
 }
 
