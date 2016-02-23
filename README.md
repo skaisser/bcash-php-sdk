@@ -9,7 +9,7 @@
 
 ## Instalando utilizando o composer
 
-Adicione a dependencia do sdk no seu arquivo de configuração do composer. Por exemmplo:
+Adicione a dependencia do sdk no seu arquivo de configuração do composer. Por exemplo:
 
 ```javascript
 {
@@ -112,19 +112,19 @@ $payment = new Payment("SUA CONSUMER KEY");
 try {
 	$response = $payment->create($transactionRequest);
 	echo "<pre>";
-	var_dump($response);die;
+	var_dump($response);
 	echo "</pre>";
 
 } catch (ValidationException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 
 } catch (ConnectionException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 }
 
@@ -143,7 +143,7 @@ function createCreditCard()
 	$creditCard->setNumber("4111111111111111");
 	$creditCard->setSecurityCode("123");
 	$creditCard->setMaturityMonth("01");
-	$creditCard->setMaturityYear("2016");
+	$creditCard->setMaturityYear("2019");
 	return $creditCard;
 }
 
@@ -194,19 +194,19 @@ try {
     $cpf = '00201208008';
 	$response = $account->searchBy($cpf);
 	echo "<pre>";
-	var_dump($response);die;
+	var_dump($response);
 	echo "</pre>";
 
 } catch (ValidationException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 
 } catch (ConnectionException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 }
 ```
@@ -231,19 +231,19 @@ try {
  	$response = $installments->calculate($amount, $maxInstallments, $ignoreScheduledDiscount);
 
 	echo "<pre>";
-	var_dump($response);die;
+	var_dump($response);
 	echo "</pre>";
 
 } catch (ValidationException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 
 } catch (ConnectionException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 }
 
@@ -266,19 +266,19 @@ try {
     $transactionId = 186148; // Id da transacao bcash a ser cancelada
     $response = $cancellation->execute($transactionId);
 	echo "<pre>";
-	var_dump($response);die;
+	var_dump($response);
 	echo "</pre>";
 
 } catch (ValidationException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 
 } catch (ConnectionException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 }
 
@@ -309,19 +309,19 @@ try {
 	$response = $consultation->searchByOrder($orderid);
 	
 	echo "<pre>";
-	var_dump($response);die;
+	var_dump($response);
 	echo "</pre>";
 
 } catch (ValidationException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 
 } catch (ConnectionException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 }
 
@@ -407,13 +407,13 @@ try {
 	$result = NotificationSimulator::test ($notificationUrl, $transactionId, $orderId, $statusId);
 
 	echo "<pre>";
-	var_dump($result);die;
+	var_dump($result);
 	echo "</pre>";
 
 } catch (ConnectionException $e) {
 	echo "ErroTeste: " . $e->getMessage() . "\n";
 	echo "<pre>";
-	var_dump($e->getErrors());die;
+	var_dump($e->getErrors());
 	echo "</pre>";
 }
 
